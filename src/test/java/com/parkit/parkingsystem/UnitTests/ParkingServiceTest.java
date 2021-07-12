@@ -1,4 +1,4 @@
-package com.parkit.parkingsystem;
+package com.parkit.parkingsystem.UnitTests;
 
 import com.parkit.parkingsystem.constants.ParkingType;
 import com.parkit.parkingsystem.dao.ParkingSpotDAO;
@@ -14,31 +14,50 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import static org.mockito.Mockito.*;
 
+/**
+ * The type Parking service test.
+ */
 @ExtendWith(MockitoExtension.class)
 public class ParkingServiceTest {
 
+    /**
+     * The constant parkingService.
+     */
     private static ParkingService parkingService;
 
+    /**
+     * The constant inputReaderUtil.
+     */
     @Mock
     private static InputReaderUtil inputReaderUtil;
+    /**
+     * The constant parkingSpotDAO.
+     */
     @Mock
     private static ParkingSpotDAO parkingSpotDAO;
+    /**
+     * The constant ticketDAO.
+     */
     @Mock
     private static TicketDAO ticketDAO;
 
+    /**
+     * Sets up per test.
+     */
     @BeforeEach
     private void setUpPerTest() {
         try {
             when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
 
-            ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
+            ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
             Ticket ticket = new Ticket();
-            ticket.setInTime(new Date(System.currentTimeMillis() - (60*60*1000)));
+            ticket.setInTime(LocalDateTime.now().minusHours(1));
             ticket.setParkingSpot(parkingSpot);
+            ticket.setRecurringCustomer(true);
             ticket.setVehicleRegNumber("ABCDEF");
             when(ticketDAO.getTicket(anyString())).thenReturn(ticket);
             when(ticketDAO.updateTicket(any(Ticket.class))).thenReturn(true);
@@ -48,13 +67,45 @@ public class ParkingServiceTest {
             parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         } catch (Exception e) {
             e.printStackTrace();
-            throw  new RuntimeException("Failed to set up test mock objects");
+            throw new RuntimeException("Failed to set up test mock objects");
         }
     }
 
+    /**
+     * Process exiting vehicle test.
+     */
     @Test
-    public void processExitingVehicleTest(){
+    public void processExitingVehicleTest() {
+        // GIVEN
+
+        // WHEN
         parkingService.processExitingVehicle();
+
+        // THEN
+        verify(parkingSpotDAO, Mockito.times(1)).updateParking(any(ParkingSpot.class));
+    }
+
+
+    /**
+     * Process incoming vehicle test.
+     */
+    @Test
+    public void processIncomingVehicleTest() {
+        // GIVEN
+        try {
+            when(inputReaderUtil.readSelection()).thenReturn(1);
+            when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
+            when(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR)).thenReturn(1);
+            when(parkingSpotDAO.updateParking(any(ParkingSpot.class))).thenReturn(true);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
+        // WHEN
+        parkingService.processIncomingVehicle();
+
+
+        // THEN
         verify(parkingSpotDAO, Mockito.times(1)).updateParking(any(ParkingSpot.class));
     }
 
