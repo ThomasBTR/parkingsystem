@@ -33,23 +33,23 @@ public enum DBConstants {
     /**
      * The Sql message.
      */
-    private final String SQLMessage;
+    private final String sqlMessage;
 
-    /**
-     * Instantiates a new Db constants.
-     *
-     * @param SQLMessage the sql message
-     */
-    DBConstants(String SQLMessage) {
-        this.SQLMessage = SQLMessage;
-    }
+	/**
+	 * Instantiates a new Db constants.
+	 *
+	 * @param sqlMessage the sql message
+	 */
+	DBConstants(String sqlMessage) {
+		this.sqlMessage = sqlMessage;
+	}
 
-    /**
-     * Gets sql message.
-     *
-     * @return the sql message
-     */
-    public String getSQLMessage() {
-        return SQLMessage;
-    }
+	/**
+	 * Gets sql message.
+	 *
+	 * @return the sql message
+	 */
+	public String getSqlMessage() {
+		return sqlMessage;
+	}
 }

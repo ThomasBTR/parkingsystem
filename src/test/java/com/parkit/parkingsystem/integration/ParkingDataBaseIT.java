@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
  * The type Parking data base it.
  */
 @ExtendWith(MockitoExtension.class)
-public class ParkingDataBaseIT {
+class ParkingDataBaseIT {
 
     /**
      * The constant dataBaseTestConfig.
@@ -82,7 +82,7 @@ public class ParkingDataBaseIT {
      * Test parking a car.
      */
     @Test
-    public void testParkingACar() {
+    void testParkingACar() {
 
         // GIVEN
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
@@ -98,7 +98,7 @@ public class ParkingDataBaseIT {
         assertThat(actualTicket.getParkingSpot().getId()).isEqualTo(1);
         assertThat(actualTicket.getParkingSpot().getParkingType()).isEqualTo(ParkingType.CAR);
         assertThat(actualTicket.getVehicleRegNumber()).isEqualTo(REGISTRATION_NUMBER);
-        assertThat(actualTicket.getPrice()).isEqualTo(0);
+        assertThat(actualTicket.getPrice()).isZero();
 
         verify(inputReaderUtil, times(1)).readSelection();
         verify(inputReaderUtil, times(1)).readVehicleRegistrationNumber();
@@ -109,7 +109,7 @@ public class ParkingDataBaseIT {
      * Test parking lot exit car.
      */
     @Test
-    public void testParkingLotExit_CAR() {
+    void testParkingLotExit_CAR() {
 
         // GIVEN
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
@@ -142,7 +142,7 @@ public class ParkingDataBaseIT {
      * Test parking lot exit car with 1 hour parking.
      */
     @Test
-    public void testParkingLotExit_CAR_With1HourParking() {
+    void testParkingLotExit_CAR_With1HourParking() {
 
         // GIVEN
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
@@ -181,7 +181,7 @@ public class ParkingDataBaseIT {
      * Test parking lot exit recurring customer car with 1 hour parking.
      */
     @Test
-    public void testParkingLotExit_RecurringCustomer_CAR_With1HourParking() {
+    void testParkingLotExit_RecurringCustomer_CAR_With1HourParking() {
 
         // GIVEN
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);

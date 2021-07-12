@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
  * The type Parking service test.
  */
 @ExtendWith(MockitoExtension.class)
-public class ParkingServiceTest {
+class ParkingServiceTest {
 
     /**
      * The constant parkingService.
@@ -75,7 +75,7 @@ public class ParkingServiceTest {
      * Process exiting vehicle test.
      */
     @Test
-    public void processExitingVehicleTest() {
+    void processExitingVehicleTest() {
         // GIVEN
 
         // WHEN
@@ -90,7 +90,7 @@ public class ParkingServiceTest {
      * Process incoming vehicle test.
      */
     @Test
-    public void processIncomingVehicleTest() {
+    void processIncomingVehicleTest() {
         // GIVEN
         try {
             when(inputReaderUtil.readSelection()).thenReturn(1);

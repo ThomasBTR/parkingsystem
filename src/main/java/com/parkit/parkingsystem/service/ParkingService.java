@@ -76,8 +76,6 @@ public class ParkingService {
                 parkingSpot.setAvailable(false);
                 parkingSpotDAO.updateParking(parkingSpot);//allocate this parking space and mark it's availability as false
                 LocalDateTime inTime = LocalDateTime.now();
-                //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
-                //ticket.setId(ticketID);
                 ticket.setParkingSpot(parkingSpot);
                 ticket.setVehicleRegNumber(vehicleRegNumber);
                 ticket.setPrice(0);
@@ -103,14 +101,16 @@ public class ParkingService {
         boolean check = false;
         try {
             Connection con = dataBaseConfig.getConnection();
-            PreparedStatement ps = con.prepareStatement(DBConstants.CHECK_IF_RECURRING_CUSTOMER.getSQLMessage());
-            ps.setString(1, vehicleRegNumber);
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            if (rs.next()) {
-                check = true;
+            ResultSet rs;
+            try (PreparedStatement ps = con.prepareStatement(DBConstants.CHECK_IF_RECURRING_CUSTOMER.getSqlMessage())) {
+                ps.setString(1, vehicleRegNumber);
+                rs = ps.executeQuery();
+                rs.next();
+                if (rs.next()) {
+                    check = true;
+                }
+                dataBaseConfig.closePreparedStatement(ps);
             }
-            dataBaseConfig.closePreparedStatement(ps);
             dataBaseConfig.closeResultSet(rs);
             dataBaseConfig.closeConnection(con);
 
@@ -144,7 +144,7 @@ public class ParkingService {
             if (parkingNumber > 0) {
                 parkingSpot = new ParkingSpot(parkingNumber, parkingType, true);
             } else {
-                throw new Exception("Error fetching parking number from DB. Parking slots might be full");
+                throw new InterruptedException("Error fetching parking number from DB. Parking slots might be full");
             }
         } catch (IllegalArgumentException ie) {
             logger.error("Error parsing user input for type of vehicle", ie);

@@ -18,17 +18,17 @@ import static org.assertj.core.api.Assertions.assertThat;
  * The type Data base config test.
  */
 @ExtendWith(MockitoExtension.class)
-public class DataBaseConfigTest {
+class DataBaseConfigTest {
 
-    /**
-     * The constant dataBaseConfig.
-     */
-    private static DataBaseConfig dataBaseConfig;
+	/**
+	 * The constant dataBaseConfig.
+	 */
+	private static DataBaseConfig dataBaseConfig;
 
-    /**
-     * The Ps.
-     */
-    @Mock
+	/**
+	 * The Ps.
+	 */
+	@Mock
     PreparedStatement ps;
 
 
@@ -40,20 +40,20 @@ public class DataBaseConfigTest {
         dataBaseConfig = new DataBaseConfig();
     }
 
-    /**
-     * Db connection should be true.
-     */
-    @Test
-    public void DBConnection_ShouldBeTrue() {
-        // GIVEN
-        Connection testCon = null;
+	/**
+	 * Db connection should be true.
+	 */
+	@Test
+	void DBConnection_ShouldBeTrue() {
+		// GIVEN
+		Connection testCon = null;
 
-        // WHEN
-        try {
-            testCon = dataBaseConfig.getConnection();
-        } catch (SQLException | ClassNotFoundException sqlException) {
-            sqlException.printStackTrace();
-        }
+		// WHEN
+		try {
+			testCon = dataBaseConfig.getConnection();
+		} catch (SQLException | ClassNotFoundException sqlException) {
+			sqlException.printStackTrace();
+		}
 
         // THEN
         assertThat(testCon).isInstanceOf(ConnectionImpl.class);
@@ -61,21 +61,21 @@ public class DataBaseConfigTest {
     }
 
 
-    /**
-     * Db closing result set should be void.
-     */
-    @Test
-    public void DBClosingResultSet_ShouldBeVoid() {
-        // GIVEN
-        Connection testCon = null;
+	/**
+	 * Db closing result set should be void.
+	 */
+	@Test
+	void DBClosingResultSet_ShouldBeVoid() {
+		// GIVEN
+		Connection testCon = null;
 
-        // WHEN
-        try {
-            testCon = dataBaseConfig.getConnection();
-            dataBaseConfig.closePreparedStatement(ps);
-            dataBaseConfig.closeConnection(testCon);
+		// WHEN
+		try {
+			testCon = dataBaseConfig.getConnection();
+			dataBaseConfig.closePreparedStatement(ps);
+			dataBaseConfig.closeConnection(testCon);
 
-        } catch (SQLException | ClassNotFoundException sqlException) {
+		} catch (SQLException | ClassNotFoundException sqlException) {
             sqlException.printStackTrace();
         }
 
