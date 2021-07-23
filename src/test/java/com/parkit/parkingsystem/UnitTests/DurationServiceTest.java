@@ -23,9 +23,9 @@ class DurationServiceTest {
 	 * Sets up.
 	 */
 	@BeforeAll
-    private static void setUp() {
-        durationCalculatorService = new DurationCalculatorService();
-    }
+	private static void setUp() {
+		durationCalculatorService = new DurationCalculatorService();
+	}
 
 	/**
 	 * Sets up duration should return correct duration.

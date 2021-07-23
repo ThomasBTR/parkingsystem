@@ -29,16 +29,16 @@ class DataBaseConfigTest {
 	 * The Ps.
 	 */
 	@Mock
-    PreparedStatement ps;
+	PreparedStatement ps;
 
 
-    /**
-     * Data base config instance.
-     */
-    @BeforeAll
-    static void DataBaseConfigInstance() {
-        dataBaseConfig = new DataBaseConfig();
-    }
+	/**
+	 * Data base config instance.
+	 */
+	@BeforeAll
+	static void DataBaseConfigInstance() {
+		dataBaseConfig = new DataBaseConfig();
+	}
 
 	/**
 	 * Db connection should be true.
@@ -55,10 +55,10 @@ class DataBaseConfigTest {
 			sqlException.printStackTrace();
 		}
 
-        // THEN
-        assertThat(testCon).isInstanceOf(ConnectionImpl.class);
-        dataBaseConfig.closeConnection(testCon);
-    }
+		// THEN
+		assertThat(testCon).isInstanceOf(ConnectionImpl.class);
+		dataBaseConfig.closeConnection(testCon);
+	}
 
 
 	/**
@@ -76,10 +76,10 @@ class DataBaseConfigTest {
 			dataBaseConfig.closeConnection(testCon);
 
 		} catch (SQLException | ClassNotFoundException sqlException) {
-            sqlException.printStackTrace();
-        }
+			sqlException.printStackTrace();
+		}
 
-        // THEN
-        assertThat(testCon).isInstanceOf(ConnectionImpl.class);
-    }
+		// THEN
+		assertThat(testCon).isInstanceOf(ConnectionImpl.class);
+	}
 }
