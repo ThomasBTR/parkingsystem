@@ -25,12 +25,12 @@ public class ParkingService {
 	/**
 	 * The constant logger.
 	 */
-	private static final Logger logger = LogManager.getLogger("ParkingService");
+	private static final Logger LOGGER = LogManager.getLogger("ParkingService");
 
 	/**
 	 * The constant fareCalculatorService.
 	 */
-	private static final FareCalculatorService fareCalculatorService = new FareCalculatorService();
+	private static final FareCalculatorService FARE_CALCULATOR_SERVICE = new FareCalculatorService();
 	/**
 	 * The Data base config.
 	 */
@@ -55,7 +55,7 @@ public class ParkingService {
 	 * @param parkingSpotDAO  the parking spot dao
 	 * @param ticketDAO       the ticket dao
 	 */
-	public ParkingService(InputReaderUtil inputReaderUtil, ParkingSpotDAO parkingSpotDAO, TicketDAO ticketDAO) {
+	public ParkingService(final InputReaderUtil inputReaderUtil, final ParkingSpotDAO parkingSpotDAO, final TicketDAO ticketDAO) {
 		this.inputReaderUtil = inputReaderUtil;
 		this.parkingSpotDAO = parkingSpotDAO;
 		this.ticketDAO = ticketDAO;
@@ -74,7 +74,8 @@ public class ParkingService {
 					System.out.println("Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount.");
 				}
 				parkingSpot.setAvailable(false);
-				parkingSpotDAO.updateParking(parkingSpot);//allocate this parking space and mark it's availability as false
+				//allocate this parking space and mark it's availability as false
+				parkingSpotDAO.updateParking(parkingSpot);
 				LocalDateTime inTime = LocalDateTime.now();
 				ticket.setParkingSpot(parkingSpot);
 				ticket.setVehicleRegNumber(vehicleRegNumber);
@@ -87,7 +88,7 @@ public class ParkingService {
 				System.out.println("Recorded in-time for vehicle number:" + vehicleRegNumber + " is:" + inTime);
 			}
 		} catch (Exception e) {
-			logger.error("Unable to process incoming vehicle", e);
+			LOGGER.error("Unable to process incoming vehicle", e);
 		}
 	}
 
@@ -97,7 +98,7 @@ public class ParkingService {
 	 * @param vehicleRegNumber the vehicle reg number
 	 * @return the boolean
 	 */
-	private boolean checkRecurringCustomer(String vehicleRegNumber) {
+	private boolean checkRecurringCustomer(final String vehicleRegNumber) {
 		boolean check = false;
 		try {
 			Connection con = dataBaseConfig.getConnection();
@@ -147,9 +148,9 @@ public class ParkingService {
 				throw new InterruptedException("Error fetching parking number from DB. Parking slots might be full");
 			}
 		} catch (IllegalArgumentException ie) {
-			logger.error("Error parsing user input for type of vehicle", ie);
+			LOGGER.error("Error parsing user input for type of vehicle", ie);
 		} catch (Exception e) {
-			logger.error("Error fetching next available parking slot", e);
+			LOGGER.error("Error fetching next available parking slot", e);
 		}
 		return parkingSpot;
 	}
@@ -190,7 +191,7 @@ public class ParkingService {
 			}
 			LocalDateTime outTime = LocalDateTime.now();
 			ticket.setOutTime(outTime);
-			fareCalculatorService.calculateFare(ticket);
+			FARE_CALCULATOR_SERVICE.calculateFare(ticket);
 			if (ticketDAO.updateTicket(ticket)) {
 				ParkingSpot parkingSpot = ticket.getParkingSpot();
 				parkingSpot.setAvailable(true);
@@ -201,7 +202,7 @@ public class ParkingService {
 				System.out.println("Unable to update ticket information. Error occurred");
 			}
 		} catch (Exception e) {
-			logger.error("Unable to process exiting vehicle", e);
+			LOGGER.error("Unable to process exiting vehicle", e);
 		}
 	}
 }

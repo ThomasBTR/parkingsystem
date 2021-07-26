@@ -18,7 +18,7 @@ public class DurationCalculatorService {
 	 * @param outTime the out time
 	 * @return the duration
 	 */
-	public Duration calculateDifference(LocalDateTime inTime, LocalDateTime outTime) {
+	public Duration calculateDifference(final LocalDateTime inTime, final LocalDateTime outTime) {
 
 		Duration duration = new Duration();
 		duration.differenceWithFreeTime(inTime, outTime);

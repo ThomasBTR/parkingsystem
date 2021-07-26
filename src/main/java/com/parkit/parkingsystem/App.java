@@ -15,7 +15,10 @@ public class App {
 	/**
 	 * The constant logger.
 	 */
-	private static final Logger logger = LogManager.getLogger("App");
+	private static final Logger LOGGER = LogManager.getLogger("App");
+
+	protected App() {
+	}
 
 
 	/**
@@ -24,7 +27,7 @@ public class App {
 	 * @param args the input arguments
 	 */
 	public static void main(final String[] args) {
-		logger.info("Initializing Parking System");
+		LOGGER.info("Initializing Parking System");
 		InputReaderUtil inputReaderUtil = new InputReaderUtil();
 		ParkingSpotDAO parkingSpotDAO = new ParkingSpotDAO();
 		TicketDAO ticketDAO = new TicketDAO();

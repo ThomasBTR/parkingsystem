@@ -40,7 +40,7 @@ public enum DBConstants {
 	 *
 	 * @param sqlMessage the sql message
 	 */
-	DBConstants(String sqlMessage) {
+	DBConstants(final String sqlMessage) {
 		this.sqlMessage = sqlMessage;
 	}
 

@@ -21,19 +21,29 @@ public class TicketDAO {
 	/**
 	 * The constant logger.
 	 */
-	private static final Logger logger = LogManager.getLogger("TicketDAO");
+	private static final Logger LOGGER = LogManager.getLogger("TicketDAO");
 
 	/**
 	 * The Data base config.
 	 */
-	public DataBaseConfig dataBaseConfig = new DataBaseConfig();
+	private DataBaseConfig dataBaseConfig = new DataBaseConfig();
+
+
+	/**
+	 * Set data base config.
+	 *
+	 * @param dataBaseConfig the data base config
+	 */
+	public void setDataBaseConfig(final DataBaseConfig dataBaseConfig) {
+		this.dataBaseConfig = dataBaseConfig;
+	}
 
 	/**
 	 * Save ticket.
 	 *
 	 * @param ticket the ticket
 	 */
-	public void saveTicket(Ticket ticket) {
+	public void saveTicket(final Ticket ticket) {
 		Connection con;
 		try {
 			con = dataBaseConfig.getConnection();
@@ -48,7 +58,7 @@ public class TicketDAO {
 			}
 			dataBaseConfig.closeConnection(con);
 		} catch (Exception ex) {
-			logger.error("Error fetching next available slot", ex);
+			LOGGER.error("Error fetching next available slot", ex);
 		}
 	}
 
@@ -58,7 +68,7 @@ public class TicketDAO {
 	 * @param vehicleRegNumber the vehicle reg number
 	 * @return the ticket
 	 */
-	public Ticket getTicket(String vehicleRegNumber) {
+	public Ticket getTicket(final String vehicleRegNumber) {
 		Connection con;
 		Ticket ticket = null;
 		try {
@@ -82,7 +92,7 @@ public class TicketDAO {
 			}
 			dataBaseConfig.closeConnection(con);
 		} catch (Exception ex) {
-			logger.error("Error fetching next available slot", ex);
+			LOGGER.error("Error fetching next available slot", ex);
 		}
 		return ticket;
 	}
@@ -93,7 +103,7 @@ public class TicketDAO {
 	 * @param ticket the ticket
 	 * @return the boolean
 	 */
-	public boolean updateTicket(Ticket ticket) {
+	public boolean updateTicket(final Ticket ticket) {
 		Connection con;
 		try {
 			con = dataBaseConfig.getConnection();
@@ -108,7 +118,7 @@ public class TicketDAO {
 			dataBaseConfig.closeConnection(con);
 
 		} catch (Exception ex) {
-			logger.error("Error saving ticket info", ex);
+			LOGGER.error("Error saving ticket info", ex);
 			return false;
 		}
 		return true;

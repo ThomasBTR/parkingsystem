@@ -29,10 +29,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class ParkingDataBaseIT {
 
-	/**
-	 * The constant dataBaseTestConfig.
-	 */
-	private static final DataBaseConfig dataBaseTestConfig = new DataBaseConfig();
+
 	/**
 	 * The constant REGISTRATION_NUMBER.
 	 */
@@ -61,9 +58,9 @@ class ParkingDataBaseIT {
 	@BeforeAll
 	private static void setUp() {
 		parkingSpotDAO = new ParkingSpotDAO();
-		parkingSpotDAO.dataBaseConfig = dataBaseTestConfig;
+		DataBaseConfig dataBaseTestConfig = parkingSpotDAO.getDataBaseConfig();
 		ticketDAO = new TicketDAO();
-		ticketDAO.dataBaseConfig = dataBaseTestConfig;
+		ticketDAO.setDataBaseConfig(dataBaseTestConfig);
 		dataBasePrepareService = new DataBasePrepareService();
 	}
 

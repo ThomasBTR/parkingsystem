@@ -51,7 +51,7 @@ public class Ticket {
 	 *
 	 * @param id the id
 	 */
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -69,7 +69,7 @@ public class Ticket {
 	 *
 	 * @param parkingSpot the parking spot
 	 */
-	public void setParkingSpot(ParkingSpot parkingSpot) {
+	public void setParkingSpot(final ParkingSpot parkingSpot) {
 		this.parkingSpot = parkingSpot;
 	}
 
@@ -87,7 +87,7 @@ public class Ticket {
 	 *
 	 * @param vehicleRegNumber the vehicle reg number
 	 */
-	public void setVehicleRegNumber(String vehicleRegNumber) {
+	public void setVehicleRegNumber(final String vehicleRegNumber) {
 		this.vehicleRegNumber = vehicleRegNumber;
 	}
 
@@ -105,7 +105,7 @@ public class Ticket {
 	 *
 	 * @param price the price
 	 */
-	public void setPrice(double price) {
+	public void setPrice(final double price) {
 		this.price = price;
 	}
 
@@ -123,7 +123,7 @@ public class Ticket {
 	 *
 	 * @param inTime the in time
 	 */
-	public void setInTime(LocalDateTime inTime) {
+	public void setInTime(final LocalDateTime inTime) {
 		this.inTime = inTime;
 	}
 
@@ -141,7 +141,7 @@ public class Ticket {
 	 *
 	 * @param outTime the out time
 	 */
-	public void setOutTime(LocalDateTime outTime) {
+	public void setOutTime(final LocalDateTime outTime) {
 		this.outTime = outTime;
 	}
 
@@ -159,7 +159,7 @@ public class Ticket {
 	 *
 	 * @param recurringCustomer the recurring customer
 	 */
-	public void setRecurringCustomer(boolean recurringCustomer) {
+	public void setRecurringCustomer(final boolean recurringCustomer) {
 		this.recurringCustomer = recurringCustomer;
 	}
 }

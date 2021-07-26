@@ -52,7 +52,7 @@ public class Duration {
 	 *
 	 * @param free the free
 	 */
-	public void setFree(boolean free) {
+	public void setFree(final boolean free) {
 		this.free = free;
 	}
 
@@ -79,7 +79,7 @@ public class Duration {
 	 *
 	 * @param year the year
 	 */
-	public void setYear(long year) {
+	public void setYear(final long year) {
 		this.year = year;
 	}
 
@@ -97,7 +97,7 @@ public class Duration {
 	 *
 	 * @param month the month
 	 */
-	public void setMonth(long month) {
+	public void setMonth(final long month) {
 		this.month = month;
 	}
 
@@ -115,7 +115,7 @@ public class Duration {
 	 *
 	 * @param day the day
 	 */
-	public void setDay(long day) {
+	public void setDay(final long day) {
 		this.day = day;
 	}
 
@@ -133,7 +133,7 @@ public class Duration {
 	 *
 	 * @param hour the hour
 	 */
-	public void setHour(long hour) {
+	public void setHour(final long hour) {
 		this.hour = hour;
 	}
 
@@ -151,7 +151,7 @@ public class Duration {
 	 *
 	 * @param minute the minute
 	 */
-	public void setMinute(long minute) {
+	public void setMinute(final long minute) {
 		this.minute = minute;
 	}
 
@@ -161,7 +161,7 @@ public class Duration {
 	 * @param inTime  the in time
 	 * @param outTime the out time
 	 */
-	public void differenceWithFreeTime(LocalDateTime inTime, LocalDateTime outTime) {
+	public void differenceWithFreeTime(final LocalDateTime inTime, final LocalDateTime outTime) {
 		this.differenceInTime = outTime.toInstant(ZoneOffset.UTC).toEpochMilli()
 				- inTime.toInstant(ZoneOffset.UTC).toEpochMilli();
 	}

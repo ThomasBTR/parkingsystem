@@ -27,7 +27,7 @@ public class PropertiesReader {
 	 * @param property the property
 	 * @return the prop values
 	 */
-	public String getPropValues(String property) {
+	public String getPropValues(final String property) {
 		Properties prop = new Properties();
 		String propFileName = "src/main/resources/config.properties";
 

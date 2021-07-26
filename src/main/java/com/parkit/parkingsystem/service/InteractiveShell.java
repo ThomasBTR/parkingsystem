@@ -14,7 +14,7 @@ public class InteractiveShell {
 	/**
 	 * The constant logger.
 	 */
-	private static final Logger logger = LogManager.getLogger("InteractiveShell");
+	private static final Logger LOGGER = LogManager.getLogger("InteractiveShell");
 
 	/**
 	 * The Input reader util.
@@ -32,7 +32,7 @@ public class InteractiveShell {
 	 * @param inputReaderUtil the input reader util
 	 * @param parkingService  the parking service
 	 */
-	public InteractiveShell(InputReaderUtil inputReaderUtil, ParkingService parkingService) {
+	public InteractiveShell(final InputReaderUtil inputReaderUtil, final ParkingService parkingService) {
 		this.inputReaderUtil = inputReaderUtil;
 		this.parkingService = parkingService;
 	}
@@ -51,7 +51,7 @@ public class InteractiveShell {
 	 * Load interface.
 	 */
 	public void loadInterface() {
-		logger.info("App initialized!!!");
+		LOGGER.info("App initialized!!!");
 		out.println("Welcome to Parking System!");
 
 		boolean continueApp = true;

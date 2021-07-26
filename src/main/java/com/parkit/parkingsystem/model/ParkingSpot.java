@@ -26,7 +26,7 @@ public class ParkingSpot {
 	 * @param parkingType the parking type
 	 * @param isAvailable the is available
 	 */
-	public ParkingSpot(int number, ParkingType parkingType, boolean isAvailable) {
+	public ParkingSpot(final int number, final ParkingType parkingType, final boolean isAvailable) {
 		this.number = number;
 		this.parkingType = parkingType;
 		this.isAvailable = isAvailable;
@@ -64,7 +64,7 @@ public class ParkingSpot {
 	 *
 	 * @param available the available
 	 */
-	public void setAvailable(boolean available) {
+	public void setAvailable(final boolean available) {
 		isAvailable = available;
 	}
 }

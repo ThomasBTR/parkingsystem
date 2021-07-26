@@ -5,7 +5,6 @@ package com.parkit.parkingsystem.constants;
  * The enum Fare.
  */
 public enum Fare {
-
 	/**
 	 * Free parking time in minute fare.
 	 */
@@ -26,12 +25,12 @@ public enum Fare {
 	/**
 	 * The constant DAYS_PER_MONTH.
 	 */
-	private final static double DAYS_PER_MONTH = 30.41666666;
+	private static final double DAYS_PER_MONTH = 30.41666666;
 
 	/**
 	 * The constant HOURS_PER_DAYS.
 	 */
-	private final static double HOURS_PER_DAYS = 24;
+	private static final double HOURS_PER_DAYS = 24;
 	/**
 	 * The constant CAR_RATE_PER_DAY.
 	 */
@@ -51,7 +50,7 @@ public enum Fare {
 	/**
 	 * The constant SECONDS_PER_MINUTES.
 	 */
-	private final static double SECONDS_PER_MINUTES = 60;
+	private static final double SECONDS_PER_MINUTES = 60;
 	/**
 	 * The constant CAR_RATE_PER_MINUTE.
 	 */
@@ -71,7 +70,7 @@ public enum Fare {
 	 *
 	 * @param value the value
 	 */
-	Fare(double value) {
+	Fare(final double value) {
 		this.value = value;
 	}
 

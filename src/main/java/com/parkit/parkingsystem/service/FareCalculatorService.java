@@ -16,7 +16,7 @@ public class FareCalculatorService {
 	 *
 	 * @param ticket the ticket
 	 */
-	public void calculateFare(Ticket ticket) {
+	public void calculateFare(final Ticket ticket) {
 		if ((ticket.getOutTime() == null) || (ticket.getOutTime().isBefore(ticket.getInTime()))) {
 			throw new IllegalArgumentException("Out time provided is incorrect:" + Objects.requireNonNull(ticket.getOutTime()));
 		}
@@ -57,7 +57,7 @@ public class FareCalculatorService {
 	 * @param duration the duration
 	 * @return the double
 	 */
-	public double carTicketPrice(Duration duration) {
+	public double carTicketPrice(final Duration duration) {
 		return (Fare.CAR_RATE_PER_MONTH * duration.getMonth()
 				+ duration.getDay() * Fare.CAR_RATE_PER_DAY
 				+ duration.getHour() * Fare.CAR_RATE_PER_HOUR.getValue()
@@ -71,7 +71,7 @@ public class FareCalculatorService {
 	 * @param duration the duration
 	 * @return the double
 	 */
-	public double carTicketPriceForRecurringCustomer(Duration duration) {
+	public double carTicketPriceForRecurringCustomer(final Duration duration) {
 		return carTicketPrice(duration) * (1 - Fare.RECURRING_USER_DISCOUNT.getValue());
 	}
 
@@ -81,7 +81,7 @@ public class FareCalculatorService {
 	 * @param duration the duration
 	 * @return the double
 	 */
-	public double bikeTicketPrice(Duration duration) {
+	public double bikeTicketPrice(final Duration duration) {
 		return (duration.getMonth() * Fare.BIKE_RATE_PER_MONTH
 				+ duration.getDay() * Fare.BIKE_RATE_PER_DAY
 				+ duration.getHour() * Fare.BIKE_RATE_PER_HOUR.getValue()
@@ -95,7 +95,7 @@ public class FareCalculatorService {
 	 * @param duration the duration
 	 * @return the double
 	 */
-	public double bikeTicketPriceForRecurringCustomer(Duration duration) {
+	public double bikeTicketPriceForRecurringCustomer(final Duration duration) {
 		return bikeTicketPrice(duration) * (1 - Fare.RECURRING_USER_DISCOUNT.getValue());
 	}
 }

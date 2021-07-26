@@ -18,12 +18,21 @@ public class ParkingSpotDAO {
 	/**
 	 * The constant logger.
 	 */
-	private static final Logger logger = LogManager.getLogger("ParkingSpotDAO");
+	private static final Logger LOGGER = LogManager.getLogger("ParkingSpotDAO");
 
 	/**
 	 * The Data base config.
 	 */
-	public DataBaseConfig dataBaseConfig = new DataBaseConfig();
+	private final DataBaseConfig dataBaseConfig = new DataBaseConfig();
+
+	/**
+	 * Gets data base config.
+	 *
+	 * @return the data base config
+	 */
+	public DataBaseConfig getDataBaseConfig() {
+		return dataBaseConfig;
+	}
 
 	/**
 	 * Get next available slot int.
@@ -31,7 +40,7 @@ public class ParkingSpotDAO {
 	 * @param parkingType the parking type
 	 * @return the int
 	 */
-	public int getNextAvailableSlot(ParkingType parkingType) {
+	public int getNextAvailableSlot(final ParkingType parkingType) {
 		Connection con = null;
 		int result = -1;
 		try {
@@ -46,7 +55,7 @@ public class ParkingSpotDAO {
 				dataBaseConfig.closePreparedStatement(ps);
 			}
 		} catch (Exception ex) {
-			logger.error("Error fetching next available slot", ex);
+			LOGGER.error("Error fetching next available slot", ex);
 		} finally {
 			dataBaseConfig.closeConnection(con);
 		}
@@ -59,7 +68,7 @@ public class ParkingSpotDAO {
 	 * @param parkingSpot the parking spot
 	 * @return the boolean
 	 */
-	public boolean updateParking(ParkingSpot parkingSpot) {
+	public boolean updateParking(final ParkingSpot parkingSpot) {
 		//update the availability fo that parking slot
 		Connection con = null;
 		try {
@@ -73,7 +82,7 @@ public class ParkingSpotDAO {
 			}
 			return (updateRowCount == 1);
 		} catch (Exception ex) {
-			logger.error("Error updating parking info", ex);
+			LOGGER.error("Error updating parking info", ex);
 			return false;
 		} finally {
 			dataBaseConfig.closeConnection(con);
